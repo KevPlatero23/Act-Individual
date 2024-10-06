@@ -3,78 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de ejemplo</title>
+    <title>Actividad MODULO 5</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
         }
 
         header {
             background-color: #333;
             color: #fff;
-            padding: 1em;
+            padding: 0.5em;
             text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
         }
 
-        header nav ul {
-            list-style: none;
-            margin: 0;
+        nav {
+            width: 200px; /* Ancho del menú lateral */
+            background-color: #444;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            top: 60px; 
+            bottom: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
             padding: 0;
-            display: flex;
-            justify-content: space-between;
         }
 
-        header nav ul li {
-            margin-right: 20px;
+        nav ul li {
+            margin: 10px 0;
         }
 
-        header nav ul li a {
+        nav ul li a {
             color: #fff;
             text-decoration: none;
         }
 
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
         main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2em;
+            margin-left: 220px; /* Para dejar espacio al menú */
+            padding: 20px;
+            flex-grow: 1; /* Permite que este div crezca */
         }
 
         .hero {
             background-image: url("https://static.vecteezy.com/system/resources/previews/005/051/674/non_2x/abstract-futuristic-technology-background-of-blue-random-bar-city-block-data-free-vector.jpg");
             background-size: cover;
             background-position: center;
-            height: 110vh;
-	    width: 100vw;
+            height: 100vh;
+            width: 90vw;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #fff;
-	    position: relative;
+            position: relative;
+        }
+
+        .content {
+            display: none; /* Oculta los dashboards inicialmente */
+        }
+
+        .content.active {
+            display: block; /* Muestra el dashboard activo */
         }
 
         footer {
             background-color: #333;
             color: #fff;
-            padding: 1em;
+            padding: 0.5em; /* Cambiado para reducir la altura */
             text-align: center;
             clear: both;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <header>
-	<h2>Configurar APP Service para Reporteria.</h2>
+        <h4>Configurar APP Service para Reporteria.</h4>
     </header>
+    <nav>
+        <ul>
+            <li><a href="#"> ---------------------</a></li>
+            <li><a href="#" onclick="showDashboard('dashboard1')">IoT </a></li>
+            <li><a href="#" onclick="showDashboard('dashboard2')">Temperatura</a></li>
+            <li><a href="#" onclick="showDashboard('dashboard3')">Agencia de Viajes</a></li>
+	    <li><a href="#" onclick="showDashboard('dashboard4')">Ventas </a></li>
+            <li><a href="#"> ---------------------</a></li>
+        </ul>
+    </nav>
     <main>
         <section class="hero">
-            <h1>Párrafo. Haz clic aquí para agregar tu propio texto y editar.</h1>
+            <div id="dashboard1" class="content active">
+                <iframe title="actividadIoT" width="1200" height="500" src="https://app.powerbi.com/reportEmbed?reportId=e931266c-f520-4328-a75a-bc81a70103b4&autoAuth=true&ctid=da59aced-10ef-4f8b-a2d8-68a3ce6bc7f1" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
+            <div id="dashboard2" class="content">
+                <iframe title="Análisis de datos IoT - Dashboard" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=21fde644-4611-481c-8aaa-f7a5362c888d&autoAuth=true&ctid=da59aced-10ef-4f8b-a2d8-68a3ce6bc7f1" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
+            <div id="dashboard3" class="content">
+                <iframe title="Dashboard" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=644d8ceb-4951-4263-8103-fe6b66a64bd2&autoAuth=true&ctid=da59aced-10ef-4f8b-a2d8-68a3ce6bc7f1" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
+	    <div id="dashboard4" class="content">
+                <iframe title="MiPrimerReporte" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=49c4545e-3657-4d60-be68-2a17b7e6dc8e&autoAuth=true&ctid=da59aced-10ef-4f8b-a2d8-68a3ce6bc7f1" frameborder="0" allowFullScreen="true"></iframe>
+            </div>
         </section>
     </main>
     <footer>
         <p>© Actividad Evaluada - Modulo 5</p>
     </footer>
+
+    <script>
+        function showDashboard(dashboardId) {
+            // Oculta todos los dashboards
+            const dashboards = document.querySelectorAll('.content');
+            dashboards.forEach(dashboard => {
+                dashboard.classList.remove('active');
+            });
+
+            // Muestra el dashboard seleccionado
+            document.getElementById(dashboardId).classList.add('active');
+        }
+    </script>
 </body>
 </html>
